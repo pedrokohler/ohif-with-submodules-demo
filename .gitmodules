@@ -2,3 +2,9 @@
 	path = testdata
 	url = https://github.com/OHIF/viewer-testdata-dicomweb.git
 	branch = main
+[submodule "ohif-extensions"]
+	path = ohif-extensions
+	url = /Users/kohler/projects/pearl/proposal-ohif-extensions
+[submodule "cornerstone3d"]
+	path = cornerstone3d
+	url = https://github.com/cornerstonejs/cornerstone3D.git

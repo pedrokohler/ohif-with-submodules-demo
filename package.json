@@ -11,7 +11,9 @@
       "platform/i18n",
       "extensions/*",
       "modes/*",
-      "addOns/externals/*"
+      "addOns/externals/*",
+      "ohif-extensions/extensions/*",
+      "ohif-extensions/modes/*"
     ],
     "nohoist": [
       "**/html-minifier-terser"
@@ -76,7 +78,13 @@
     "lerna:cache": "./netlify-lerna-cache.sh",
     "lerna:restore": "./netlify-lerna-restore.sh",
     "lerna:customVersion": "node version.mjs",
-    "link-list": "npm ls --depth=0 --link=true"
+    "link-list": "npm ls --depth=0 --link=true",
+    "setup:submodules": "git submodule update --init --recursive ohif-extensions cornerstone3d",
+    "setup:cornerstone": "YARN_IGNORE_ENGINES=1 yarn --cwd cornerstone3d install && YARN_IGNORE_ENGINES=1 yarn --cwd cornerstone3d build:esm && yarn link:all",
+    "refresh:cornerstone": "YARN_IGNORE_ENGINES=1 yarn --cwd cornerstone3d build:esm && yarn link:all",
+    "setup:all": "yarn setup:submodules && YARN_IGNORE_ENGINES=1 yarn install && yarn setup:cornerstone && YARN_IGNORE_ENGINES=1 yarn install",
+    "dev:proposal": "APP_CONFIG=config/proposal-local.js yarn dev",
+    "link:all": "node ./scripts/link-cornerstone-all.js"
   },
   "dependencies": {
     "execa": "8.0.1"
